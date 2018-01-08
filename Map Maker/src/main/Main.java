@@ -6,8 +6,10 @@ import java.awt.image.BufferStrategy;
 
 public class Main extends Canvas implements Runnable {
 
-    public static final int WIDTH = 1000, HEIGHT = 600, FPS = 60;
+    public static final int WIDTH = 1200, HEIGHT = 600, FPS = 60;
     private JFrame frame;
+    private MainPanel mp;
+    private SidePanel sp;
     private boolean running;
 
     public Main() {
@@ -21,6 +23,9 @@ public class Main extends Canvas implements Runnable {
         frame.setVisible(true);
         frame.setFocusable(true);
         frame.requestFocus();
+
+        mp = new MainPanel();
+        sp = new SidePanel();
     }
 
     public static void main(String[] args) {
@@ -73,7 +78,8 @@ public class Main extends Canvas implements Runnable {
     }
 
     private void update() {
-
+        mp.update();
+        sp.update();
     }
 
     private void render() {
@@ -91,7 +97,8 @@ public class Main extends Canvas implements Runnable {
     }
 
     private void draw(Graphics g) {
-
+        mp.draw(g);
+        sp.draw(g);
     }
 
 }
