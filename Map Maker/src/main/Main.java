@@ -1,7 +1,13 @@
 package main;
 
+import input.InputHandler;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 
 public class Main extends Canvas implements Runnable {
@@ -21,9 +27,10 @@ public class Main extends Canvas implements Runnable {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.setFocusable(true);
-        frame.requestFocus();
-
+        setFocusable(true);
+        requestFocus();
+        addKeyListener(new InputHandler());
+        addMouseListener(InputHandler.getMouseAdapter());
         mp = new MainPanel();
         sp = new SidePanel();
     }
@@ -78,6 +85,10 @@ public class Main extends Canvas implements Runnable {
     }
 
     private void update() {
+        Point p = MouseInfo.getPointerInfo().getLocation();
+        SwingUtilities.convertPointFromScreen(p, this);
+        InputHandler.setMousePos(p);
+
         mp.update();
         sp.update();
     }

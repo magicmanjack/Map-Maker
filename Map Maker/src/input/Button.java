@@ -1,6 +1,9 @@
 package input;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Button {
 
@@ -18,16 +21,14 @@ public class Button {
     }
 
     public boolean isPressed() {
+        p = false;
         return p;
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.WHITE);
-        g.drawRect(x, y, w, h);
         g.setColor(Color.GRAY);
-        g.fillRect(x, y, w, h);
+        g.drawRect(x, y, w, h);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.setColor(Color.WHITE);
         g.drawString(t, x + 2, y + 2);
     }
 
