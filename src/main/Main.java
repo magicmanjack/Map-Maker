@@ -9,6 +9,7 @@ public class Main extends Canvas implements Runnable {
     public static final int WIDTH = 1000, HEIGHT = 600, FPS = 60;
     private boolean running;
     private JFrame frame;
+    private SidePanel sp;
 
     public Main() {
         running = false;
@@ -20,6 +21,8 @@ public class Main extends Canvas implements Runnable {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        sp = new SidePanel();
     }
 
     public static void main(String[] args) {
@@ -74,7 +77,7 @@ public class Main extends Canvas implements Runnable {
     }
 
     private void update() {
-
+        sp.update();
     }
 
     private void render() {
@@ -92,7 +95,7 @@ public class Main extends Canvas implements Runnable {
     }
 
     private void draw(Graphics g) {
-
+        sp.draw(g);
     }
 
 }
