@@ -1,7 +1,11 @@
 package main;
 
+import input.InputHandler;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.image.BufferStrategy;
 
 public class Main extends Canvas implements Runnable {
@@ -9,6 +13,7 @@ public class Main extends Canvas implements Runnable {
     public static final int WIDTH = 1000, HEIGHT = 600, FPS = 60;
     private boolean running;
     private JFrame frame;
+    private Point mousePoint;
     private SidePanel sp;
 
     public Main() {
@@ -21,6 +26,17 @@ public class Main extends Canvas implements Runnable {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        frame.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                requestFocus();
+            }
+        });
+
+        addKeyListener(new InputHandler());
+        addMouseListener(new InputHandler());
 
         sp = new SidePanel();
     }
@@ -67,7 +83,7 @@ public class Main extends Canvas implements Runnable {
 
             if(System.currentTimeMillis() - lastTime >= printDelay) {
                 lastTime += printDelay;
-                System.out.printf("Updates: %d, Frames: %d",
+                System.out.printf("Updates: %d, Frames: %d\n",
                         updates / (printDelay / 1000),
                         frames / (printDelay / 1000));
                 updates = 0;
@@ -77,6 +93,12 @@ public class Main extends Canvas implements Runnable {
     }
 
     private void update() {
+        // Mouse position is passed to the input handler.
+        mousePoint = MouseInfo.getPointerInfo().getLocation();
+        SwingUtilities.convertPointFromScreen(mousePoint, frame);
+        InputHandler.setMouseX(mousePoint.x);
+        InputHandler.setMouseY(mousePoint.y);
+        // End.
         sp.update();
     }
 
