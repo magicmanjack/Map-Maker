@@ -95,7 +95,7 @@ public class Main extends Canvas implements Runnable {
     private void update() {
         // Mouse position is passed to the input handler.
         mousePoint = MouseInfo.getPointerInfo().getLocation();
-        SwingUtilities.convertPointFromScreen(mousePoint, frame);
+        SwingUtilities.convertPointFromScreen(mousePoint, this);
         InputHandler.setMouseX(mousePoint.x);
         InputHandler.setMouseY(mousePoint.y);
         // End.

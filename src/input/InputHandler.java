@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class InputHandler implements KeyListener, MouseListener {
 
     private static int mouseX, mouseY; // The X and Y coordinates of the mouse pointer.
-    private static boolean mousePressed;
+    private static boolean mouseDown;
 
     // Start of keyboard input.
 
@@ -43,6 +43,10 @@ public class InputHandler implements KeyListener, MouseListener {
         return mouseY;
     }
 
+    public static boolean getMouseDown() {
+        return mouseDown;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -50,12 +54,12 @@ public class InputHandler implements KeyListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        mouseDown = true;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        mouseDown = false;
     }
 
     @Override

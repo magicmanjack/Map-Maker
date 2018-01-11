@@ -5,10 +5,23 @@ import java.awt.*;
 public abstract class Button {
 
     protected int x, y, w, h;
-    protected boolean pressed;
+    protected boolean pressed; // If this the mouse has pressed this button.
+    protected boolean lastMouseDown; // Keeps track of the mousePressed from the previous update.
 
     public void update() {
+        if(pressed) {
+            pressed = false;
+        }
+        if(lastMouseDown && !InputHandler.getMouseDown() && mouseHovering()) {
+            pressed = true;
+        }
+        lastMouseDown = InputHandler.getMouseDown();
+    }
 
+    public boolean mouseHovering() {
+        int mX = InputHandler.getMouseX();
+        int mY = InputHandler.getMouseY();
+        return (mX >= x && mX <= x + w && mY >= y && mY <= y + h);
     }
 
     public void draw(Graphics g) {
@@ -16,7 +29,7 @@ public abstract class Button {
     }
 
     public boolean isPressed() {
-        return pressed;
+       return pressed;
     }
 
     public void setX(int x) {
