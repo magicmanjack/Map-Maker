@@ -1,6 +1,8 @@
 package main;
 
+import input.FileSelection;
 import input.TextButton;
+import input.TileSelectionPanel;
 
 import java.awt.*;
 
@@ -16,6 +18,7 @@ public class SidePanel {
     private TextButton svMapBtn; // The save map button.
     private TextButton ldTileArrBtn; // A button to load a tile arrangement.
     private TextButton svTileArrBtn; // A button to save the current tile arrangement.
+    private TileSelectionPanel tsBtn; //
 
     public SidePanel() {
         ldMapBtn = new TextButton(X + 15, Y + 10, 150, 30, "Load Map");
@@ -24,6 +27,7 @@ public class SidePanel {
         svMapBtn.setTxtOffsetX(25);
         ldTileArrBtn = new TextButton(X + 15, Y + 90, 150, 30, "Load Tile Arr");
         svTileArrBtn = new TextButton(X + 15, Y + 130, 150, 30, "Save Tile Arr");
+        tsBtn = new TileSelectionPanel(X + 15, Y + 170, 150, 0); // Change later.
     }
 
     public void update() {
@@ -31,6 +35,13 @@ public class SidePanel {
         svMapBtn.update();
         ldTileArrBtn.update();
         svTileArrBtn.update();
+
+        if(ldMapBtn.isPressed()) {
+            FileSelection.getSelection();
+        }
+        if(ldTileArrBtn.isPressed()) {
+            tsBtn.loadTileArr(FileSelection.getSelection());
+        }
     }
 
     public void draw(Graphics g) {
