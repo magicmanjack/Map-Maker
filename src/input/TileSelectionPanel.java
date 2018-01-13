@@ -23,11 +23,19 @@ public class TileSelectionPanel extends Button {
         setY(y);
         setW(w);
         setH(h);
+        tileArr = new Tile[0];
         numRows = rows;
         rowHeight = h / numRows;
         buttons = new TileSelectionButton[numRows];
         for(int i = 0; i < buttons.length; i++) {
             buttons[i] = new TileSelectionButton(x, y + (rowHeight * i), w, rowHeight);
+        }
+    }
+
+    @Override
+    public void update() {
+        for(int i = 0; i < buttons.length; i++) {
+            buttons[i].update(); // Updates the buttons so they can detect presses.
         }
     }
 
@@ -56,17 +64,36 @@ public class TileSelectionPanel extends Button {
         }
     }
 
+    public void addTile() {
+        // To be done later.
+    }
+
+    public void removeTile() {
+        if(tileArr.length > 0) {
+            Tile original[] = tileArr;
+            tileArr = new Tile[original.length - 1]; // Shortens the array by one.
+            for (int i = 0; i < tileArr.length; i++) {
+                tileArr[i] = original[i]; // Sets the shorter array to the original values.
+            }
+            refresh();
+        }
+    }
+
     public void setScrollOffset(int offset) {
         if(tileArr != null) { // Makes sure a tile array has been loaded.
             if(offset >= 0 && offset <= tileArr.length) { // Sets an upwards scrolling limit.
                 scrollOffset = offset;
-                for (int i = 0; i < buttons.length; i++) { // For every button slot...
-                    if (i + offset < tileArr.length && i + offset >= 0) {
-                        buttons[i].setTileDisplayed(tileArr[i + offset]); // Sets the current button slot to the offset tile.
-                    }else {
-                        buttons[i].suspend(); // Buttons that are not being used go invisible.
-                    }
-                }
+                refresh();
+            }
+        }
+    }
+
+    public void refresh() {
+        for (int i = 0; i < buttons.length; i++) { // For every button slot...
+            if (i + scrollOffset < tileArr.length && i + scrollOffset >= 0) {
+                buttons[i].setTileDisplayed(tileArr[i + scrollOffset]); // Sets the current button slot to the offset tile.
+            }else {
+                buttons[i].suspend(); // Buttons that are not being used go invisible.
             }
         }
     }

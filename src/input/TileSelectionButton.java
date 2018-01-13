@@ -19,6 +19,7 @@ public class TileSelectionButton extends Button {
         setW(w);
         setH(h);
         font = new Font("Arial", Font.ITALIC, 15);
+        suspended = true;
     }
 
     public void setTileDisplayed(Tile t) {
@@ -46,6 +47,10 @@ public class TileSelectionButton extends Button {
                 g.fillRect(x, y, h, h); // Draws a black tile if the tile is void.
             }
             g.drawString(name, x + h + SidePanel.EDGE_SEP, y + (h / 3) * 2); // Draws the file path next to the tile image.
+            if(isPressed()) {
+                g.setColor(Color.GRAY);
+                g.fillRect(x, y, w, h);
+            }
         }
     }
 

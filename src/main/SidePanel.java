@@ -65,6 +65,7 @@ public class SidePanel {
         ldTileArrBtn.update();
         svTileArrBtn.update();
         mvUpBtn.update();
+        tsBtn.update();
         mvDownBtn.update();
         addTileBtn.update();
         removeTileBtn.update();
@@ -80,6 +81,12 @@ public class SidePanel {
         }
         if(mvDownBtn.isPressed()) {
             tsBtn.setScrollOffset(tsBtn.getScrollOffset() + 1); // Scrolls the selection panel down.
+        }
+        if(addTileBtn.isPressed()) {
+            tsBtn.addTile();
+        }
+        if(removeTileBtn.isPressed()) {
+            tsBtn.removeTile();
         }
     }
 

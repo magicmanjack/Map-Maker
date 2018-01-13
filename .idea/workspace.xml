@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fce29068-16ef-4409-8a05-4c0c471cff28" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/input/TileSelectionButton.java" afterPath="$PROJECT_DIR$/src/input/TileSelectionButton.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/input/TileSelectionPanel.java" afterPath="$PROJECT_DIR$/src/input/TileSelectionPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/SidePanel.java" afterPath="$PROJECT_DIR$/src/main/SidePanel.java" />
     </list>
@@ -30,8 +31,8 @@
       <file leaf-file-name="SidePanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/SidePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="95" column="27" lean-forward="false" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="27" />
+            <state relative-caret-position="585">
+              <caret line="88" column="31" lean-forward="true" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,7 +55,7 @@
       <file leaf-file-name="Button.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/input/Button.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
+            <state relative-caret-position="200">
               <caret line="8" column="97" lean-forward="false" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
               <folding />
             </state>
@@ -89,8 +90,8 @@
       <file leaf-file-name="TextButton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/input/TextButton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+            <state relative-caret-position="0">
+              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,12 +102,12 @@
       <file leaf-file-name="TileSelectionPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/input/TileSelectionPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="60" column="39" lean-forward="false" selection-start-line="60" selection-start-column="39" selection-end-line="60" selection-end-column="39" />
+            <state relative-caret-position="49">
+              <caret line="66" column="24" lean-forward="true" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2422#2423#0" expanded="true" />
-                <element signature="e#2457#2458#0" expanded="true" />
+                <element signature="e#3120#3121#0" expanded="true" />
+                <element signature="e#3155#3156#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -115,12 +116,12 @@
       <file leaf-file-name="TileSelectionButton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/input/TileSelectionButton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="631">
-              <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+            <state relative-caret-position="406">
+              <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#886#887#0" expanded="true" />
-                <element signature="e#918#919#0" expanded="true" />
+                <element signature="e#912#913#0" expanded="true" />
+                <element signature="e#944#945#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -178,8 +179,8 @@
         <option value="$PROJECT_DIR$/src/input/TileSelection.java" />
         <option value="$PROJECT_DIR$/src/input/TextButton.java" />
         <option value="$PROJECT_DIR$/src/main/Tile.java" />
-        <option value="$PROJECT_DIR$/src/input/TileSelectionButton.java" />
         <option value="$PROJECT_DIR$/src/input/IconButton.java" />
+        <option value="$PROJECT_DIR$/src/input/TileSelectionButton.java" />
         <option value="$PROJECT_DIR$/src/main/SidePanel.java" />
         <option value="$PROJECT_DIR$/src/input/TileSelectionPanel.java" />
       </list>
@@ -532,18 +533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/input/TileSelectionButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#886#887#0" expanded="true" />
-            <element signature="e#918#919#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Tile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -560,16 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/input/FileSelection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/input/InputHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-15">
@@ -581,11 +560,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/input/FileSelection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/input/Button.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
+        <state relative-caret-position="200">
           <caret line="8" column="97" lean-forward="false" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/input/TextButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -599,20 +598,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/input/TextButton.java">
+    <entry file="file://$PROJECT_DIR$/src/input/TileSelectionButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+        <state relative-caret-position="406">
+          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#912#913#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/SidePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="95" column="27" lean-forward="false" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="27" />
+        <state relative-caret-position="585">
+          <caret line="88" column="31" lean-forward="true" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -621,12 +622,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/input/TileSelectionPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="60" column="39" lean-forward="false" selection-start-line="60" selection-start-column="39" selection-end-line="60" selection-end-column="39" />
+        <state relative-caret-position="49">
+          <caret line="66" column="24" lean-forward="true" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2422#2423#0" expanded="true" />
-            <element signature="e#2457#2458#0" expanded="true" />
+            <element signature="e#3120#3121#0" expanded="true" />
+            <element signature="e#3155#3156#0" expanded="true" />
           </folding>
         </state>
       </provider>
