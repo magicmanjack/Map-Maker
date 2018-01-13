@@ -1,10 +1,14 @@
 package main;
 
 import input.FileSelection;
+import input.IconButton;
 import input.TextButton;
 import input.TileSelectionPanel;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class SidePanel {
 
@@ -18,16 +22,32 @@ public class SidePanel {
     private TextButton svMapBtn; // The save map button.
     private TextButton ldTileArrBtn; // A button to load a tile arrangement.
     private TextButton svTileArrBtn; // A button to save the current tile arrangement.
-    private TileSelectionPanel tsBtn; //
+    private TileSelectionPanel tsBtn;
+    private IconButton mvUpBtn; // Button for scrolling up the tile selection.
+    private IconButton mvDownBtn; // Button for scrolling down the tile selection.
+
+    private static BufferedImage mvUpIcon;
+    private static BufferedImage mvDownIcon;
+
+    static {
+        try {
+            mvUpIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/move_up.png"));
+            mvDownIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/move_down.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public SidePanel() {
-        ldMapBtn = new TextButton(X + 15, Y + 10, 150, 30, "Load Map");
+        ldMapBtn = new TextButton(X + EDGE_SEP, Y + 10, 150, 30, "Load Map");
         ldMapBtn.setTxtOffsetX(25);
-        svMapBtn = new TextButton(X + 15, Y + 50, 150, 30, "Save Map");
+        svMapBtn = new TextButton(X + EDGE_SEP, Y + 50, 150, 30, "Save Map");
         svMapBtn.setTxtOffsetX(25);
-        ldTileArrBtn = new TextButton(X + 15, Y + 90, 150, 30, "Load Tile Arr");
-        svTileArrBtn = new TextButton(X + 15, Y + 130, 150, 30, "Save Tile Arr");
-        tsBtn = new TileSelectionPanel(X + 15, Y + 170, 150, 300, 10); // Change later.
+        ldTileArrBtn = new TextButton(X + EDGE_SEP, Y + 90, 150, 30, "Load Tile Arr");
+        svTileArrBtn = new TextButton(X + EDGE_SEP, Y + 130, 150, 30, "Save Tile Arr");
+        mvUpBtn = new IconButton(X + EDGE_SEP, Y + 180, 150, 20, mvUpIcon);
+        tsBtn = new TileSelectionPanel(X + EDGE_SEP, Y + 200, 150, 300, 10);
+        mvDownBtn = new IconButton(X + EDGE_SEP, Y + 500, 150, 20, mvDownIcon);
     }
 
     public void update() {
@@ -35,6 +55,8 @@ public class SidePanel {
         svMapBtn.update();
         ldTileArrBtn.update();
         svTileArrBtn.update();
+        mvUpBtn.update();
+        mvDownBtn.update();
 
         if(ldMapBtn.isPressed()) {
             FileSelection.getSelection();
@@ -42,7 +64,12 @@ public class SidePanel {
         if(ldTileArrBtn.isPressed()) {
             tsBtn.loadTileArr(FileSelection.getSelection());
         }
-        tsBtn.setScrollOffset(-2);
+        if(mvUpBtn.isPressed()) {
+            tsBtn.setScrollOffset(tsBtn.getScrollOffset() - 1);
+        }
+        if(mvDownBtn.isPressed()) {
+            tsBtn.setScrollOffset(tsBtn.getScrollOffset() + 1);
+        }
     }
 
     public void draw(Graphics g) {
@@ -52,7 +79,9 @@ public class SidePanel {
         svMapBtn.draw(g);
         ldTileArrBtn.draw(g);
         svTileArrBtn.draw(g);
+        mvUpBtn.draw(g);
         tsBtn.draw(g);
+        mvDownBtn.draw(g);
     }
 
 }
