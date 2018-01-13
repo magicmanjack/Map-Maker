@@ -4,6 +4,7 @@ import input.FileSelection;
 import input.IconButton;
 import input.TextButton;
 import input.TileSelectionPanel;
+import javafx.geometry.Side;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -25,14 +26,20 @@ public class SidePanel {
     private TileSelectionPanel tsBtn;
     private IconButton mvUpBtn; // Button for scrolling up the tile selection.
     private IconButton mvDownBtn; // Button for scrolling down the tile selection.
+    private IconButton addTileBtn; // Button to add tile to the tile selection.
+    private IconButton removeTileBtn; // Button to remove tile from the tile selection.
 
     private static BufferedImage mvUpIcon;
     private static BufferedImage mvDownIcon;
+    private static BufferedImage addTileIcon;
+    private static BufferedImage removeTileIcon;
 
     static {
         try {
             mvUpIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/move_up.png"));
             mvDownIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/move_down.png"));
+            addTileIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/add.png"));
+            removeTileIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/remove.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,6 +55,8 @@ public class SidePanel {
         mvUpBtn = new IconButton(X + EDGE_SEP, Y + 180, 150, 20, mvUpIcon);
         tsBtn = new TileSelectionPanel(X + EDGE_SEP, Y + 200, 150, 300, 10);
         mvDownBtn = new IconButton(X + EDGE_SEP, Y + 500, 150, 20, mvDownIcon);
+        addTileBtn = new IconButton(X + EDGE_SEP, Y + 530, 30, 30, addTileIcon);
+        removeTileBtn = new IconButton(X + EDGE_SEP + 30, Y + 530, 30, 30, removeTileIcon);
     }
 
     public void update() {
@@ -57,6 +66,8 @@ public class SidePanel {
         svTileArrBtn.update();
         mvUpBtn.update();
         mvDownBtn.update();
+        addTileBtn.update();
+        removeTileBtn.update();
 
         if(ldMapBtn.isPressed()) {
             FileSelection.getSelection();
@@ -65,10 +76,10 @@ public class SidePanel {
             tsBtn.loadTileArr(FileSelection.getSelection());
         }
         if(mvUpBtn.isPressed()) {
-            tsBtn.setScrollOffset(tsBtn.getScrollOffset() - 1);
+            tsBtn.setScrollOffset(tsBtn.getScrollOffset() - 1); // Scrolls the selection panel up.
         }
         if(mvDownBtn.isPressed()) {
-            tsBtn.setScrollOffset(tsBtn.getScrollOffset() + 1);
+            tsBtn.setScrollOffset(tsBtn.getScrollOffset() + 1); // Scrolls the selection panel down.
         }
     }
 
@@ -82,6 +93,8 @@ public class SidePanel {
         mvUpBtn.draw(g);
         tsBtn.draw(g);
         mvDownBtn.draw(g);
+        addTileBtn.draw(g);
+        removeTileBtn.draw(g);
     }
 
 }

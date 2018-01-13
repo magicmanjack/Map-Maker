@@ -58,7 +58,7 @@ public class TileSelectionPanel extends Button {
 
     public void setScrollOffset(int offset) {
         if(tileArr != null) { // Makes sure a tile array has been loaded.
-            if(offset >= 0) { // Sets an upwards scrolling limit.
+            if(offset >= 0 && offset <= tileArr.length) { // Sets an upwards scrolling limit.
                 scrollOffset = offset;
                 for (int i = 0; i < buttons.length; i++) { // For every button slot...
                     if (i + offset < tileArr.length && i + offset >= 0) {
