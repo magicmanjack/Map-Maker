@@ -1,5 +1,6 @@
 package input;
 
+import main.SidePanel;
 import main.Tile;
 
 import java.awt.*;
@@ -11,31 +12,43 @@ import java.util.Scanner;
 public class TileSelectionPanel extends Button {
 
     private int numTiles;
+    private int numRows;
+    private int rowHeight;
     private Tile tileArr[];
-    private Tile tilesShown[];
+    private TileSelectionButton buttons[];
+    private int scrollOffset;
 
-    public TileSelectionPanel(int x, int y, int w, int h) {
+    public TileSelectionPanel(int x, int y, int w, int h, int rows) {
         setX(x);
         setY(y);
         setW(w);
         setH(h);
+        numRows = rows;
+        rowHeight = h / numRows;
+        buttons = new TileSelectionButton[numRows];
+        for(int i = 0; i < buttons.length; i++) {
+            buttons[i] = new TileSelectionButton(x, y + (rowHeight * i), w, rowHeight);
+        }
     }
 
     public void loadTileArr(File f) {
         try {
-            Scanner fileReader = new Scanner(f);
+            if(f != null) {
+                Scanner fileReader = new Scanner(f);
 
-            numTiles = fileReader.nextInt();
-            tileArr = new Tile[numTiles];
+                numTiles = fileReader.nextInt();
+                tileArr = new Tile[numTiles];
 
-            tileArr[0] = new Tile(new File(fileReader.nextLine())); // Sets tileArr[0] to empty.
-            int i = 1;
-            while(fileReader.hasNext()) {
-                tileArr[i] = new Tile(new File(fileReader.nextLine()));
-                i++;
+                tileArr[0] = new Tile(new File(fileReader.nextLine())); // Sets tileArr[0] to empty.
+                int i = 1;
+                while (fileReader.hasNext()) {
+                    tileArr[i] = new Tile(new File(fileReader.nextLine())); // Creates a new tile for every path specified in the file.
+                    i++;
+                }
+
+                fileReader.close();
+                setScrollOffset(0);
             }
-
-            fileReader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -43,9 +56,21 @@ public class TileSelectionPanel extends Button {
         }
     }
 
+    public void setScrollOffset(int offset) {
+
+    }
+
+    public int getScrollOffset() {
+        return scrollOffset;
+    }
+
     @Override
     public void draw(Graphics g) {
-
+        g.setColor(Color.GRAY);
+        g.drawRect(x, y, w, h);
+        for(int i = 0; i < buttons.length; i++) {
+            buttons[i].draw(g);
+        }
     }
 
 }

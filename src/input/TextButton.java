@@ -16,7 +16,7 @@ public class TextButton extends Button {
         setW(w);
         setH(h);
         this.text = text;
-        font = new Font("Arial", Font.BOLD, 20);
+        font = new Font("Arial", Font.BOLD, 15);
         txtOffsetX = 10;
     }
 

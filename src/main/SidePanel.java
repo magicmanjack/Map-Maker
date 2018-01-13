@@ -27,7 +27,7 @@ public class SidePanel {
         svMapBtn.setTxtOffsetX(25);
         ldTileArrBtn = new TextButton(X + 15, Y + 90, 150, 30, "Load Tile Arr");
         svTileArrBtn = new TextButton(X + 15, Y + 130, 150, 30, "Save Tile Arr");
-        tsBtn = new TileSelectionPanel(X + 15, Y + 170, 150, 0); // Change later.
+        tsBtn = new TileSelectionPanel(X + 15, Y + 170, 150, 300, 10); // Change later.
     }
 
     public void update() {
@@ -42,6 +42,7 @@ public class SidePanel {
         if(ldTileArrBtn.isPressed()) {
             tsBtn.loadTileArr(FileSelection.getSelection());
         }
+        tsBtn.setScrollOffset(-2);
     }
 
     public void draw(Graphics g) {
@@ -51,6 +52,7 @@ public class SidePanel {
         svMapBtn.draw(g);
         ldTileArrBtn.draw(g);
         svTileArrBtn.draw(g);
+        tsBtn.draw(g);
     }
 
 }
