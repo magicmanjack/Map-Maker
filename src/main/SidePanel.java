@@ -76,6 +76,9 @@ public class SidePanel {
         if(ldTileArrBtn.isPressed()) {
             tsBtn.loadTileArr(FileSelection.getSelection());
         }
+        if(svTileArrBtn.isPressed()) {
+            FileSelection.saveFile(tsBtn.createContents());
+        }
         if(mvUpBtn.isPressed()) {
             tsBtn.setScrollOffset(tsBtn.getScrollOffset() - 1); // Scrolls the selection panel up.
         }

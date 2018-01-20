@@ -75,6 +75,7 @@ public class TileSelectionPanel extends Button {
             for (int i = 0; i < tileArr.length; i++) {
                 tileArr[i] = original[i]; // Sets the shorter array to the original values.
             }
+            numTiles = tileArr.length;
             refresh();
         }
     }
@@ -100,6 +101,17 @@ public class TileSelectionPanel extends Button {
 
     public int getScrollOffset() {
         return scrollOffset;
+    }
+
+    public String createContents() {
+        String contents = "";
+        StringBuilder sb = new StringBuilder(contents);
+        sb.append(numTiles + "\n");
+        for(int i = 1; i < numTiles; i++) {
+            sb.append(tileArr[i].getPath() + "\n");
+        }
+        contents = sb.toString();
+        return contents;
     }
 
     @Override
