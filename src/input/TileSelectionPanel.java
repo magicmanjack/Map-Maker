@@ -106,9 +106,9 @@ public class TileSelectionPanel extends Button {
     public String createContents() {
         String contents = "";
         StringBuilder sb = new StringBuilder(contents);
-        sb.append(numTiles + "\n");
+        sb.append(numTiles + "\r\n");
         for(int i = 1; i < numTiles; i++) {
-            sb.append(tileArr[i].getPath() + "\n");
+            sb.append(tileArr[i].getPath() + "\r\n");
         }
         contents = sb.toString();
         return contents;

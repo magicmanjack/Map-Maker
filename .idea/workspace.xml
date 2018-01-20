@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fce29068-16ef-4409-8a05-4c0c471cff28" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/input/FileSelection.java" afterPath="$PROJECT_DIR$/src/input/FileSelection.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/input/TileSelectionPanel.java" afterPath="$PROJECT_DIR$/src/input/TileSelectionPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/SidePanel.java" afterPath="$PROJECT_DIR$/src/main/SidePanel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -73,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSelection.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FileSelection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/input/FileSelection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+            <state relative-caret-position="425">
+              <caret line="25" column="54" lean-forward="true" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -97,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TileSelectionPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TileSelectionPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/input/TileSelectionPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="112" column="33" lean-forward="false" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
+            <state relative-caret-position="545">
+              <caret line="108" column="32" lean-forward="false" selection-start-line="108" selection-start-column="32" selection-end-line="108" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,8 +167,8 @@
         <option value="$PROJECT_DIR$/src/input/IconButton.java" />
         <option value="$PROJECT_DIR$/src/input/TileSelectionButton.java" />
         <option value="$PROJECT_DIR$/src/main/SidePanel.java" />
-        <option value="$PROJECT_DIR$/src/input/TileSelectionPanel.java" />
         <option value="$PROJECT_DIR$/src/input/FileSelection.java" />
+        <option value="$PROJECT_DIR$/src/input/TileSelectionPanel.java" />
       </list>
     </option>
   </component>
@@ -842,10 +840,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/input/TileSelectionPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/input/FileSelection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="112" column="33" lean-forward="false" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
+        <state relative-caret-position="425">
+          <caret line="25" column="54" lean-forward="true" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -872,10 +870,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/input/FileSelection.java">
+    <entry file="file://$PROJECT_DIR$/src/input/TileSelectionPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+        <state relative-caret-position="545">
+          <caret line="108" column="32" lean-forward="false" selection-start-line="108" selection-start-column="32" selection-end-line="108" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

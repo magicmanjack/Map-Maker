@@ -2,6 +2,7 @@ package input;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.Formatter;
 
 public class FileSelection {
 
@@ -18,15 +19,15 @@ public class FileSelection {
 
     public static void saveFile(String contents) {
         fc = new JFileChooser();
-        FileWriter writer;
         int returnVal = fc.showSaveDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             File svdFile = fc.getSelectedFile();
             try {
-               writer = new FileWriter(svdFile);
-               writer.write(contents);
-               writer.close();
-            } catch (IOException e) {
+               Formatter fmt = new Formatter(svdFile);
+               fmt.format(contents);
+               fmt.close();
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
