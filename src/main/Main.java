@@ -104,6 +104,7 @@ public class Main extends Canvas implements Runnable {
         InputHandler.setMouseX(mousePoint.x);
         InputHandler.setMouseY(mousePoint.y);
         // End.
+        map.update();
         sp.update();
     }
 

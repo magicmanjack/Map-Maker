@@ -106,7 +106,7 @@ public class SidePanel {
             tsBtn.removeTile();
         }
         if(toggleGridBtn.isPressed()) {
-            Main.getInstance().getMap().toggleGrid();
+            Main.getInstance().getMap().toggleGrid(); // Toggles the grid overlay at a button press.
         }
     }
 

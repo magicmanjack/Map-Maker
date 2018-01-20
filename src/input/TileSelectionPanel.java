@@ -17,6 +17,7 @@ public class TileSelectionPanel extends Button {
     private Tile tileArr[];
     private TileSelectionButton buttons[];
     private int scrollOffset;
+    private int currentSelection;
 
     public TileSelectionPanel(int x, int y, int w, int h, int rows) {
         setX(x);
@@ -45,6 +46,9 @@ public class TileSelectionPanel extends Button {
     public void update() {
         for(int i = 0; i < buttons.length; i++) {
             buttons[i].update(); // Updates the buttons so they can detect presses.
+            if(buttons[i].isPressed()) {
+                currentSelection = i;
+            }
         }
     }
 
@@ -139,6 +143,10 @@ public class TileSelectionPanel extends Button {
             return tileArr[id];
         }
         return null;
+    }
+
+    public int getCurrentSelection() {
+        return currentSelection;
     }
 
     @Override

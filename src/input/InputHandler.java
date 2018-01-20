@@ -6,6 +6,7 @@ public class InputHandler implements KeyListener, MouseListener {
 
     private static int mouseX, mouseY; // The X and Y coordinates of the mouse pointer.
     private static boolean mouseDown;
+    private static boolean up, down, left, right;
 
     // Start of keyboard input.
 
@@ -16,12 +17,50 @@ public class InputHandler implements KeyListener, MouseListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+            up = true;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+            down = true;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+            left = true;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+            right = true;
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+            up = false;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+            down = false;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+            left = false;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+            right = false;
+        }
+    }
 
+    public static boolean upPressed() {
+        return up;
+    }
+
+    public static boolean downPressed() {
+        return down;
+    }
+
+    public static boolean leftPressed() {
+        return left;
+    }
+
+    public static boolean rightPressed() {
+        return right;
     }
 
     // End of keyboard input.
