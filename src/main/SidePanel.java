@@ -86,7 +86,13 @@ public class SidePanel {
             tsBtn.setScrollOffset(tsBtn.getScrollOffset() + 1); // Scrolls the selection panel down.
         }
         if(addTileBtn.isPressed()) {
-            tsBtn.addTile();
+            try {
+                if(FileSelection.getSelection() !=  null) {
+                    tsBtn.addTile(new Tile(FileSelection.getSelection()));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         if(removeTileBtn.isPressed()) {
             tsBtn.removeTile();

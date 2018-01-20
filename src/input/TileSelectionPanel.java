@@ -23,13 +23,20 @@ public class TileSelectionPanel extends Button {
         setY(y);
         setW(w);
         setH(h);
-        tileArr = new Tile[0];
+        tileArr = new Tile[1];
+        try {
+            tileArr[0] = new Tile(new File("")); // Sets the first tile to a void.
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        numTiles = tileArr.length;
         numRows = rows;
         rowHeight = h / numRows;
         buttons = new TileSelectionButton[numRows];
         for(int i = 0; i < buttons.length; i++) {
             buttons[i] = new TileSelectionButton(x, y + (rowHeight * i), w, rowHeight);
         }
+        refresh(); // Refreshes the tile buttons.
     }
 
     @Override
@@ -64,12 +71,22 @@ public class TileSelectionPanel extends Button {
         }
     }
 
-    public void addTile() {
-        // To be done later.
+    public void addTile(Tile t) {
+        Tile original[] = tileArr;
+        tileArr = new Tile[original.length + 1]; // Expands the array by one.
+        for(int i = 0; i < tileArr.length; i++) {
+            if(i >= original.length) {
+                tileArr[i] = t; // Sets the new tile to the file specified.
+            }else {
+                tileArr[i] = original[i]; // Sets the longer array to the old tiles.
+            }
+        }
+        numTiles = tileArr.length;
+        refresh();
     }
 
     public void removeTile() {
-        if(tileArr.length > 0) {
+        if(tileArr.length > 1) {
             Tile original[] = tileArr;
             tileArr = new Tile[original.length - 1]; // Shortens the array by one.
             for (int i = 0; i < tileArr.length; i++) {
@@ -104,6 +121,7 @@ public class TileSelectionPanel extends Button {
     }
 
     public String createContents() {
+        // Returns new file contents of the tile arrangement.
         String contents = "";
         StringBuilder sb = new StringBuilder(contents);
         sb.append(numTiles + "\r\n");
