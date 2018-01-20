@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fce29068-16ef-4409-8a05-4c0c471cff28" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Map Maker/input/TileSelectionPanel.class" afterPath="$PROJECT_DIR$/out/production/Map Maker/input/TileSelectionPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Map Maker/main/Main.class" afterPath="$PROJECT_DIR$/out/production/Map Maker/main/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Map Maker/main/TileMap.class" afterPath="$PROJECT_DIR$/out/production/Map Maker/main/TileMap.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/input/InputHandler.java" afterPath="$PROJECT_DIR$/src/input/InputHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/input/TileSelectionPanel.java" afterPath="$PROJECT_DIR$/src/input/TileSelectionPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/SidePanel.java" afterPath="$PROJECT_DIR$/src/main/SidePanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/TileMap.java" afterPath="$PROJECT_DIR$/src/main/TileMap.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -43,14 +35,14 @@
       <file leaf-file-name="TileMap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/TileMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="47" column="9" lean-forward="false" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+            <state relative-caret-position="525">
+              <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#833#834#0" expanded="true" />
                 <element signature="e#908#909#0" expanded="true" />
-                <element signature="e#2888#2889#0" expanded="true" />
-                <element signature="e#2940#2941#0" expanded="true" />
+                <element signature="e#3002#3003#0" expanded="true" />
+                <element signature="e#3054#3055#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -974,14 +966,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/TileMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="47" column="9" lean-forward="false" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+        <state relative-caret-position="525">
+          <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#833#834#0" expanded="true" />
             <element signature="e#908#909#0" expanded="true" />
-            <element signature="e#2888#2889#0" expanded="true" />
-            <element signature="e#2940#2941#0" expanded="true" />
+            <element signature="e#3002#3003#0" expanded="true" />
+            <element signature="e#3054#3055#0" expanded="true" />
           </folding>
         </state>
       </provider>

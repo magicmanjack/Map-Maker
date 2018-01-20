@@ -31,19 +31,19 @@ public class TileMap {
 
     public void update() {
         if(InputHandler.upPressed()) {
-            offsetY += scrollSpeed;
+            offsetY += scale(scrollSpeed);
         }
         if(InputHandler.downPressed()) {
-            offsetY -= scrollSpeed;
+            offsetY -= scale(scrollSpeed);
         }
         if(InputHandler.leftPressed()) {
-            offsetX += scrollSpeed;
+            offsetX += scale(scrollSpeed);
         }
         if(InputHandler.rightPressed()) {
-            offsetX -= scrollSpeed;
+            offsetX -= scale(scrollSpeed);
         }
         if(InputHandler.getMouseDown() && mouseHovering()) {
-            tiles[(InputHandler.getMouseX() - offsetX) / TILE_WIDTH][(InputHandler.getMouseY() - offsetY) / TILE_HEIGHT] = Main.getInstance()
+            tiles[(InputHandler.getMouseX() - offsetX) / scale(TILE_WIDTH)][(InputHandler.getMouseY() - offsetY) / scale(TILE_HEIGHT)] = Main.getInstance()
                     .getSidePanel().getTileSelectionPanel().getCurrentSelection(); // Sets the clicked tile to the ID of the current tile selected.
         }
     }
@@ -51,7 +51,7 @@ public class TileMap {
     public boolean mouseHovering() {
         int mX = InputHandler.getMouseX();
         int mY = InputHandler.getMouseY();
-        return(mX > 0 + offsetX && mX < (width * TILE_WIDTH) + offsetX && mY > 0 + offsetY && mY < (height * TILE_HEIGHT) + offsetY); // Returns true if the mouse is on the tile map.
+        return(mX > scale(0) + offsetX && mX < scale(width * TILE_WIDTH) + offsetX && mY > scale(0) + offsetY && mY < scale(height * TILE_HEIGHT) + offsetY); // Returns true if the mouse is on the tile map.
     }
 
     public void draw(Graphics g) {
@@ -60,15 +60,15 @@ public class TileMap {
                TileSelectionPanel t = Main.getInstance().getSidePanel().getTileSelectionPanel();
                if(t.getTileFromID(tiles[ix][iy]) != null) {
                    g.drawImage(t.getTileFromID(tiles[ix][iy]).getTexture(),
-                           (ix * TILE_WIDTH) + offsetX,
-                           (iy * TILE_HEIGHT) + offsetY,
-                           TILE_WIDTH,
-                           TILE_HEIGHT,
+                           scale(ix * TILE_WIDTH) + offsetX,
+                           scale(iy * TILE_HEIGHT) + offsetY,
+                           scale(TILE_WIDTH),
+                           scale(TILE_HEIGHT),
                            null); // Draws the tile texture.
                }
                if(gridEnabled) {
                    g.setColor(Color.WHITE);
-                   g.drawRect((ix * TILE_WIDTH) + offsetX, (iy * TILE_HEIGHT) + offsetY, TILE_WIDTH, TILE_HEIGHT); // Draws a white grid.
+                   g.drawRect(scale(ix * TILE_WIDTH) + offsetX, scale(iy * TILE_HEIGHT) + offsetY, scale(TILE_WIDTH), scale(TILE_HEIGHT)); // Draws a white grid.
                }
            }
         }
