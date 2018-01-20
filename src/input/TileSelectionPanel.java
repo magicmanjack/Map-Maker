@@ -24,11 +24,13 @@ public class TileSelectionPanel extends Button {
         setW(w);
         setH(h);
         tileArr = new Tile[1];
+
         try {
             tileArr[0] = new Tile(new File("")); // Sets the first tile to a void.
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         numTiles = tileArr.length;
         numRows = rows;
         rowHeight = h / numRows;
@@ -53,8 +55,8 @@ public class TileSelectionPanel extends Button {
 
                 numTiles = fileReader.nextInt();
                 tileArr = new Tile[numTiles];
-
                 tileArr[0] = new Tile(new File(fileReader.nextLine())); // Sets tileArr[0] to empty.
+
                 int i = 1;
                 while (fileReader.hasNext()) {
                     tileArr[i] = new Tile(new File(fileReader.nextLine())); // Creates a new tile for every path specified in the file.

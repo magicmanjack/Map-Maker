@@ -18,13 +18,14 @@ public class FileSelection {
     }
 
     public static void saveFile(String contents) {
+        // Gets the user to select or create a file to save into.
         fc = new JFileChooser();
         int returnVal = fc.showSaveDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             File svdFile = fc.getSelectedFile();
             try {
                Formatter fmt = new Formatter(svdFile);
-               fmt.format(contents);
+               fmt.format(contents); // Writes the file contents to the file.
                fmt.close();
 
             } catch (Exception e) {
