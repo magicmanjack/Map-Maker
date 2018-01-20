@@ -134,6 +134,13 @@ public class TileSelectionPanel extends Button {
         return contents;
     }
 
+    public Tile getTileFromID(int id) {
+        if(id < tileArr.length) {
+            return tileArr[id];
+        }
+        return null;
+    }
+
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.GRAY);

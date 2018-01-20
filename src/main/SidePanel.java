@@ -9,7 +9,9 @@ import javafx.geometry.Side;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 
 public class SidePanel {
 
@@ -28,11 +30,13 @@ public class SidePanel {
     private IconButton mvDownBtn; // Button for scrolling down the tile selection.
     private IconButton addTileBtn; // Button to add tile to the tile selection.
     private IconButton removeTileBtn; // Button to remove tile from the tile selection.
+    private IconButton toggleGridBtn; // A button to enable or disable the grid overlay of the map.
 
     private static BufferedImage mvUpIcon;
     private static BufferedImage mvDownIcon;
     private static BufferedImage addTileIcon;
     private static BufferedImage removeTileIcon;
+    private static BufferedImage toggleGridIcon;
 
     static {
         try {
@@ -40,6 +44,7 @@ public class SidePanel {
             mvDownIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/move_down.png"));
             addTileIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/add.png"));
             removeTileIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/remove.png"));
+            toggleGridIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/toggle_grid.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,6 +62,7 @@ public class SidePanel {
         mvDownBtn = new IconButton(X + EDGE_SEP, Y + 500, 150, 20, mvDownIcon);
         addTileBtn = new IconButton(X + EDGE_SEP, Y + 530, 30, 30, addTileIcon);
         removeTileBtn = new IconButton(X + EDGE_SEP + 30, Y + 530, 30, 30, removeTileIcon);
+        toggleGridBtn = new IconButton(X + EDGE_SEP + 120, Y + 530, 30, 30, toggleGridIcon);
     }
 
     public void update() {
@@ -69,6 +75,7 @@ public class SidePanel {
         mvDownBtn.update();
         addTileBtn.update();
         removeTileBtn.update();
+        toggleGridBtn.update();
 
         if(ldMapBtn.isPressed()) {
             FileSelection.getSelection();
@@ -87,8 +94,9 @@ public class SidePanel {
         }
         if(addTileBtn.isPressed()) {
             try {
-                if(FileSelection.getSelection() !=  null) {
-                    tsBtn.addTile(new Tile(FileSelection.getSelection()));
+                File selection = FileSelection.getSelection(); // Gets the file selected by the user.
+                if(selection !=  null) {
+                    tsBtn.addTile(new Tile(selection)); // Adds the selected tile to the tileArr.
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -96,6 +104,9 @@ public class SidePanel {
         }
         if(removeTileBtn.isPressed()) {
             tsBtn.removeTile();
+        }
+        if(toggleGridBtn.isPressed()) {
+            Main.getInstance().getMap().toggleGrid();
         }
     }
 
@@ -111,6 +122,11 @@ public class SidePanel {
         mvDownBtn.draw(g);
         addTileBtn.draw(g);
         removeTileBtn.draw(g);
+        toggleGridBtn.draw(g);
+    }
+
+    public TileSelectionPanel getTileSelectionPanel() {
+        return tsBtn;
     }
 
 }

@@ -15,6 +15,9 @@ public class Main extends Canvas implements Runnable {
     private JFrame frame;
     private Point mousePoint;
     private SidePanel sp;
+    private TileMap map;
+
+    private static Main m;
 
     public Main() {
         running = false;
@@ -39,10 +42,12 @@ public class Main extends Canvas implements Runnable {
         addMouseListener(new InputHandler());
 
         sp = new SidePanel();
+        map = new TileMap(10, 10);
     }
 
     public static void main(String[] args) {
-        new Main().start();
+       m = new Main();
+       m.start();
     }
 
     private void start() {
@@ -117,7 +122,20 @@ public class Main extends Canvas implements Runnable {
     }
 
     private void draw(Graphics g) {
+        map.draw(g);
         sp.draw(g);
+    }
+
+    public SidePanel getSidePanel() {
+        return sp;
+    }
+
+    public TileMap getMap() {
+        return map;
+    }
+
+    public static Main getInstance() {
+        return m; // Returns instance of main class.
     }
 
 }
