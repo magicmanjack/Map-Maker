@@ -65,7 +65,7 @@ public class TileMap {
     public boolean mouseHovering() {
         int mX = InputHandler.getMouseX();
         int mY = InputHandler.getMouseY();
-        return(mX > scale(0) + offsetX && mX < scale(width * TILE_WIDTH) + offsetX && mY > scale(0) + offsetY && mY < scale(height * TILE_HEIGHT) + offsetY); // Returns true if the mouse is on the tile map.
+        return(mX > scale(0) + offsetX && mX < (width * scale(TILE_WIDTH)) + offsetX && mY > scale(0) + offsetY && mY < (height * scale(TILE_HEIGHT)) + offsetY); // Returns true if the mouse is on the tile map.
     }
 
     public void draw(Graphics g) {
