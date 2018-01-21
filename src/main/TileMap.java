@@ -1,9 +1,13 @@
 package main;
 
+import input.IconButton;
 import input.InputHandler;
 import input.TileSelectionPanel;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class TileMap {
 
@@ -13,6 +17,24 @@ public class TileMap {
     private boolean gridEnabled;
     private int offsetX, offsetY, scrollSpeed, focusX, focusY;
     private float scaleFactor;
+
+    private IconButton addLeft, addRight, addUp, addDown; // The buttons for resizing the tilemap.
+
+    private static BufferedImage addLeftIcon;
+    private static BufferedImage addRightIcon;
+    private static BufferedImage addUpIcon;
+    private static BufferedImage addDownIcon;
+
+    static {
+        try {
+            addLeftIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_left.png"));
+            addRightIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_right.png"));
+            addUpIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_up.png"));
+            addDownIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_down.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public TileMap(int width, int height) {
         tiles = new int[width][height]; // Creates a two dimensional array of tile ID.
@@ -25,6 +47,27 @@ public class TileMap {
         offsetX = (SidePanel.X / 2) - scale(focusX);
         offsetY = (Main.HEIGHT / 2) - scale(focusY);
         scrollSpeed = 5;
+
+        addLeft = new IconButton(scale(-30) + offsetX,
+                scale(((height * TILE_HEIGHT) / 2) - 15) + offsetY,
+                scale(30),
+                scale(30),
+                addLeftIcon);
+        addRight = new IconButton(scale(width * TILE_WIDTH) + offsetX,
+                scale(((height * TILE_HEIGHT) / 2) - 15) + offsetY,
+                scale(30),
+                scale(30),
+                addRightIcon);
+        addUp = new IconButton(scale(((width * TILE_WIDTH) / 2) - 15) + offsetX,
+                scale(-30) + offsetY,
+                scale(30),
+                scale(30),
+                addUpIcon);
+        addDown = new IconButton(scale(((width * TILE_WIDTH) / 2) - 15) + offsetX,
+                scale(height * TILE_HEIGHT) + offsetY,
+                scale(30),
+                scale(30),
+                addDownIcon);
     }
 
     public void toggleGrid() {
@@ -55,6 +98,27 @@ public class TileMap {
             tiles[(InputHandler.getMouseX() - offsetX) / scale(TILE_WIDTH)][(InputHandler.getMouseY() - offsetY) / scale(TILE_HEIGHT)] = Main.getInstance()
                     .getSidePanel().getTileSelectionPanel().getCurrentSelection(); // Sets the clicked tile to the ID of the current tile selected.
         }
+
+        // Buttons start.
+        addLeft.update();
+        addRight.update();
+        addUp.update();
+        addDown.update();
+        updateButtonsPos();
+
+        if(addLeft.isPressed()) {
+
+        }
+        if(addRight.isPressed()) {
+
+        }
+        if(addUp.isPressed()) {
+
+        }
+        if(addDown.isPressed()) {
+
+        }
+        // Buttons done.
     }
 
     public void zoom() {
@@ -62,10 +126,32 @@ public class TileMap {
         InputHandler.setWheelChange(0);
     }
 
+    public void updateButtonsPos() {
+        // Updates the button to scale and offset.
+        addLeft.setX(scale(-30) + offsetX);
+        addLeft.setY(scale(((height * TILE_HEIGHT) / 2) - 15) + offsetY);
+        addLeft.setW(scale(30));
+        addLeft.setH(scale(30));
+        addRight.setX(scale(width * TILE_WIDTH) + offsetX);
+        addRight.setY(scale(((height * TILE_HEIGHT) / 2) - 15) + offsetY);
+        addRight.setW(scale(30));
+        addRight.setH(scale(30));
+        addUp.setX(scale(((width * TILE_WIDTH) / 2) - 15) + offsetX);
+        addUp.setY(scale(-30) + offsetY);
+        addUp.setW(scale(30));
+        addUp.setH(scale(30));
+        addDown.setX(scale(((width * TILE_WIDTH) / 2) - 15) + offsetX);
+        addDown.setY(scale(height * TILE_HEIGHT) + offsetY);
+        addDown.setW(scale(30));
+        addDown.setH(scale(30));
+    }
+
     public boolean mouseHovering() {
         int mX = InputHandler.getMouseX();
         int mY = InputHandler.getMouseY();
-        return(mX > scale(0) + offsetX && mX < (width * scale(TILE_WIDTH)) + offsetX && mY > scale(0) + offsetY && mY < (height * scale(TILE_HEIGHT)) + offsetY); // Returns true if the mouse is on the tile map.
+        return(mX > scale(0) + offsetX &&
+                mX < (width * scale(TILE_WIDTH)) + offsetX && mY > scale(0) + offsetY &&
+                mY < (height * scale(TILE_HEIGHT)) + offsetY); // Returns true if the mouse is on the tile map.
     }
 
     public void draw(Graphics g) {
@@ -89,6 +175,12 @@ public class TileMap {
                }
            }
         }
+
+        // Buttons are drawn after all other tilemap components.
+        addLeft.draw(g);
+        addRight.draw(g);
+        addUp.draw(g);
+        addDown.draw(g);
     }
 
     public int scale(int num) {
