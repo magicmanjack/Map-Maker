@@ -11,7 +11,7 @@ public class TileMap {
     private int width, height;
     private static final int TILE_WIDTH = 50, TILE_HEIGHT = 50;
     private boolean gridEnabled;
-    private int offsetX, offsetY, scrollSpeed;
+    private int offsetX, offsetY, scrollSpeed, focusX, focusY;
     private float scaleFactor;
 
     public TileMap(int width, int height) {
@@ -20,8 +20,10 @@ public class TileMap {
         this.height = height;
         gridEnabled = true; // Enables the grid by default.
         scaleFactor = 1;
-        offsetX = (SidePanel.X / 2) - scale((width * TILE_WIDTH) / 2);
-        offsetY = (Main.HEIGHT / 2) - scale((height * TILE_HEIGHT) / 2);
+        focusX = (width * TILE_WIDTH) / 2;
+        focusY = (height * TILE_HEIGHT) / 2;
+        offsetX = (SidePanel.X / 2) - scale(focusX);
+        offsetY = (Main.HEIGHT / 2) - scale(focusY);
         scrollSpeed = 5;
     }
 
@@ -30,22 +32,34 @@ public class TileMap {
     }
 
     public void update() {
+
+        zoom();
+
         if(InputHandler.upPressed()) {
-            offsetY += scale(scrollSpeed);
+            focusY -= scrollSpeed;
         }
         if(InputHandler.downPressed()) {
-            offsetY -= scale(scrollSpeed);
+            focusY += scrollSpeed;
         }
         if(InputHandler.leftPressed()) {
-            offsetX += scale(scrollSpeed);
+            focusX -= scrollSpeed;
         }
         if(InputHandler.rightPressed()) {
-            offsetX -= scale(scrollSpeed);
+            focusX += scrollSpeed;
         }
+
+        offsetX = (SidePanel.X / 2) - scale(focusX);
+        offsetY = (Main.HEIGHT / 2) - scale(focusY);
+
         if(InputHandler.getMouseDown() && mouseHovering()) {
             tiles[(InputHandler.getMouseX() - offsetX) / scale(TILE_WIDTH)][(InputHandler.getMouseY() - offsetY) / scale(TILE_HEIGHT)] = Main.getInstance()
                     .getSidePanel().getTileSelectionPanel().getCurrentSelection(); // Sets the clicked tile to the ID of the current tile selected.
         }
+    }
+
+    public void zoom() {
+        scaleFactor -= scaleFactor * (0.5 * InputHandler.getWheelChange());
+        InputHandler.setWheelChange(0);
     }
 
     public boolean mouseHovering() {
@@ -60,15 +74,18 @@ public class TileMap {
                TileSelectionPanel t = Main.getInstance().getSidePanel().getTileSelectionPanel();
                if(t.getTileFromID(tiles[ix][iy]) != null) {
                    g.drawImage(t.getTileFromID(tiles[ix][iy]).getTexture(),
-                           scale(ix * TILE_WIDTH) + offsetX,
-                           scale(iy * TILE_HEIGHT) + offsetY,
+                           (ix * scale(TILE_WIDTH)) + offsetX,
+                           (iy * scale(TILE_HEIGHT)) + offsetY,
                            scale(TILE_WIDTH),
                            scale(TILE_HEIGHT),
                            null); // Draws the tile texture.
                }
                if(gridEnabled) {
                    g.setColor(Color.WHITE);
-                   g.drawRect(scale(ix * TILE_WIDTH) + offsetX, scale(iy * TILE_HEIGHT) + offsetY, scale(TILE_WIDTH), scale(TILE_HEIGHT)); // Draws a white grid.
+                   g.drawRect((ix * scale(TILE_WIDTH)) + offsetX,
+                           (iy * scale(TILE_HEIGHT)) + offsetY,
+                           scale(TILE_WIDTH),
+                           scale(TILE_HEIGHT)); // Draws a white grid.
                }
            }
         }

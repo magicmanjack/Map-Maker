@@ -2,11 +2,12 @@ package input;
 
 import java.awt.event.*;
 
-public class InputHandler implements KeyListener, MouseListener {
+public class InputHandler implements KeyListener, MouseListener, MouseWheelListener {
 
     private static int mouseX, mouseY; // The X and Y coordinates of the mouse pointer.
     private static boolean mouseDown;
     private static boolean up, down, left, right;
+    private static double mWheelChange;
 
     // Start of keyboard input.
 
@@ -86,6 +87,14 @@ public class InputHandler implements KeyListener, MouseListener {
         return mouseDown;
     }
 
+    public static double getWheelChange() {
+        return mWheelChange;
+    }
+
+    public static void setWheelChange(double i) {
+        mWheelChange = i;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -109,6 +118,11 @@ public class InputHandler implements KeyListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        mWheelChange = e.getPreciseWheelRotation();
     }
 
     // End of mouse input.

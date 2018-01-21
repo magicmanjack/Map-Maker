@@ -40,6 +40,7 @@ public class Main extends Canvas implements Runnable {
 
         addKeyListener(new InputHandler());
         addMouseListener(new InputHandler());
+        addMouseWheelListener(new InputHandler());
 
         sp = new SidePanel();
         map = new TileMap(10, 10);
