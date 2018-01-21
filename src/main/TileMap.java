@@ -7,7 +7,10 @@ import input.TileSelectionPanel;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class TileMap {
 
@@ -95,6 +98,25 @@ public class TileMap {
                 scale(30),
                 scale(30),
                 removeSideDownIcon);
+    }
+
+    public void loadMap(File f) {
+        if(f != null) {
+            try {
+                Scanner s = new Scanner(f);
+                width = s.nextInt();
+                height = s.nextInt();
+                tiles = new int[width][height]; // Sets the width and height of the tile map.
+                for(int iy = 0; iy < height; iy++) {
+                    for(int ix = 0; ix < width; ix++) {
+                        tiles[ix][iy] = s.nextInt();
+                    }
+                }
+                s.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void toggleGrid() {
@@ -296,6 +318,19 @@ public class TileMap {
             }
         }
         height = tiles[0].length;
+    }
+
+    public String createFileContents() {
+        // Converts the map into file contents.
+        StringBuilder sb = new StringBuilder();
+        sb.append(width + " " + height);
+        for(int iy = 0; iy < height; iy++) {
+            sb.append("\r\n");
+            for(int ix = 0; ix < width; ix++) {
+                sb.append(tiles[ix][iy] + " ");
+            }
+        }
+        return sb.toString();
     }
 
     public int scale(int num) {

@@ -78,7 +78,10 @@ public class SidePanel {
         toggleGridBtn.update();
 
         if(ldMapBtn.isPressed()) {
-            FileSelection.getSelection();
+            Main.getInstance().getMap().loadMap(FileSelection.getSelection());
+        }
+        if(svMapBtn.isPressed()) {
+            FileSelection.saveFile(Main.getInstance().getMap().createFileContents());
         }
         if(ldTileArrBtn.isPressed()) {
             tsBtn.loadTileArr(FileSelection.getSelection());
