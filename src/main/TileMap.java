@@ -19,11 +19,16 @@ public class TileMap {
     private float scaleFactor;
 
     private IconButton addLeft, addRight, addUp, addDown; // The buttons for resizing the tilemap.
+    private IconButton removeLeft, removeRight, removeUp, removeDown;
 
     private static BufferedImage addLeftIcon;
     private static BufferedImage addRightIcon;
     private static BufferedImage addUpIcon;
     private static BufferedImage addDownIcon;
+    private static BufferedImage removeSideLeftIcon;
+    private static BufferedImage removeSideRightIcon;
+    private static BufferedImage removeSideUpIcon;
+    private static BufferedImage removeSideDownIcon;
 
     static {
         try {
@@ -31,6 +36,10 @@ public class TileMap {
             addRightIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_right.png"));
             addUpIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_up.png"));
             addDownIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_down.png"));
+            removeSideLeftIcon = ImageIO.read(TileMap.class.getResourceAsStream("/remove_side_left.png"));
+            removeSideRightIcon = ImageIO.read(TileMap.class.getResourceAsStream("/remove_side_right.png"));
+            removeSideUpIcon =  ImageIO.read(TileMap.class.getResourceAsStream("/remove_side_up.png"));
+            removeSideDownIcon = ImageIO.read(TileMap.class.getResourceAsStream("/remove_side_down.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,25 +58,43 @@ public class TileMap {
         scrollSpeed = 5;
 
         addLeft = new IconButton(scale(-30) + offsetX,
-                scale(((height * TILE_HEIGHT) / 2) - 15) + offsetY,
+                scale(((height * TILE_HEIGHT) / 2)) + offsetY,
                 scale(30),
                 scale(30),
                 addLeftIcon);
+        removeLeft = new IconButton(scale(-30) + offsetX,
+                scale(((height * TILE_HEIGHT) / 2) - 30) + offsetY,
+                scale(30), scale(30), removeSideLeftIcon);
         addRight = new IconButton(scale(width * TILE_WIDTH) + offsetX,
-                scale(((height * TILE_HEIGHT) / 2) - 15) + offsetY,
+                scale(((height * TILE_HEIGHT) / 2)) + offsetY,
                 scale(30),
                 scale(30),
                 addRightIcon);
-        addUp = new IconButton(scale(((width * TILE_WIDTH) / 2) - 15) + offsetX,
+        removeRight = new IconButton(scale(width * TILE_WIDTH) + offsetX,
+                scale(((height * TILE_HEIGHT) / 2) - 30) + offsetY,
+                scale(30),
+                scale(30),
+                removeSideRightIcon);
+        addUp = new IconButton(scale(((width * TILE_WIDTH) / 2)) + offsetX,
                 scale(-30) + offsetY,
                 scale(30),
                 scale(30),
                 addUpIcon);
-        addDown = new IconButton(scale(((width * TILE_WIDTH) / 2) - 15) + offsetX,
+        removeUp = new IconButton(scale(((width * TILE_WIDTH) / 2) - 30) + offsetX,
+                scale(-30) + offsetY,
+                scale(30),
+                scale(30),
+                removeSideUpIcon);
+        addDown = new IconButton(scale(((width * TILE_WIDTH) / 2)) + offsetX,
                 scale(height * TILE_HEIGHT) + offsetY,
                 scale(30),
                 scale(30),
                 addDownIcon);
+        removeDown = new IconButton(scale(((width * TILE_WIDTH) / 2) - 30) + offsetX,
+                scale(height * TILE_HEIGHT) + offsetY,
+                scale(30),
+                scale(30),
+                removeSideDownIcon);
     }
 
     public void toggleGrid() {
@@ -101,22 +128,38 @@ public class TileMap {
 
         // Buttons start.
         addLeft.update();
+        removeLeft.update();
         addRight.update();
+        removeRight.update();
         addUp.update();
+        removeUp.update();
         addDown.update();
+        removeDown.update();
         updateButtonsPos();
 
         if(addLeft.isPressed()) {
-
+            resizeLeft(1);
+        }
+        if(removeLeft.isPressed()) {
+            resizeLeft(-1);
         }
         if(addRight.isPressed()) {
             resizeRight(1);
         }
+        if(removeRight.isPressed()) {
+            resizeRight(-1);
+        }
         if(addUp.isPressed()) {
-
+            resizeUp(1);
+        }
+        if(removeUp.isPressed()) {
+            resizeUp(-1);
         }
         if(addDown.isPressed()) {
-
+            resizeDown(1);
+        }
+        if(removeDown.isPressed()) {
+            resizeDown(-1);
         }
         // Buttons done.
     }
@@ -129,21 +172,37 @@ public class TileMap {
     public void updateButtonsPos() {
         // Updates the button to scale and offset.
         addLeft.setX(scale(-30) + offsetX);
-        addLeft.setY(scale(((height * TILE_HEIGHT) / 2) - 15) + offsetY);
+        addLeft.setY(scale(((height * TILE_HEIGHT) / 2)) + offsetY);
         addLeft.setW(scale(30));
         addLeft.setH(scale(30));
+        removeLeft.setX(scale(-30) + offsetX);
+        removeLeft.setY(scale(((height * TILE_HEIGHT) / 2) - 30) + offsetY);
+        removeLeft.setW(scale(30));
+        removeLeft.setH(scale(30));
         addRight.setX(scale(width * TILE_WIDTH) + offsetX);
-        addRight.setY(scale(((height * TILE_HEIGHT) / 2) - 15) + offsetY);
+        addRight.setY(scale(((height * TILE_HEIGHT) / 2)) + offsetY);
         addRight.setW(scale(30));
         addRight.setH(scale(30));
-        addUp.setX(scale(((width * TILE_WIDTH) / 2) - 15) + offsetX);
+        removeRight.setX(scale(width * TILE_WIDTH) + offsetX);
+        removeRight.setY(scale(((height * TILE_HEIGHT) / 2) - 30) + offsetY);
+        removeRight.setW(scale(30));
+        removeRight.setH(scale(30));
+        addUp.setX(scale(((width * TILE_WIDTH) / 2)) + offsetX);
         addUp.setY(scale(-30) + offsetY);
         addUp.setW(scale(30));
         addUp.setH(scale(30));
-        addDown.setX(scale(((width * TILE_WIDTH) / 2) - 15) + offsetX);
+        removeUp.setX(scale(((width * TILE_WIDTH) / 2) - 30) + offsetX);
+        removeUp.setY(scale(-30) + offsetY);
+        removeUp.setW(scale(30));
+        removeUp.setH(scale(30));
+        addDown.setX(scale(((width * TILE_WIDTH) / 2)) + offsetX);
         addDown.setY(scale(height * TILE_HEIGHT) + offsetY);
         addDown.setW(scale(30));
         addDown.setH(scale(30));
+        removeDown.setX(scale(((width * TILE_WIDTH) / 2) - 30) + offsetX);
+        removeDown.setY(scale(height * TILE_HEIGHT) + offsetY);
+        removeDown.setW(scale(30));
+        removeDown.setH(scale(30));
     }
 
     public boolean mouseHovering() {
@@ -178,13 +237,26 @@ public class TileMap {
 
         // Buttons are drawn after all other tilemap components.
         addLeft.draw(g);
+        removeLeft.draw(g);
         addRight.draw(g);
+        removeRight.draw(g);
         addUp.draw(g);
+        removeUp.draw(g);
         addDown.draw(g);
+        removeDown.draw(g);
     }
 
     public void resizeLeft(int i) {
-
+        int original[][] = tiles;
+        tiles = new int[width + i][height];
+        for(int ix = 0; ix < width; ix++) {
+            for(int iy = 0; iy < height; iy++) {
+                if(ix + i >= 0) {
+                    tiles[ix + i][iy] = original[ix][iy];
+                }
+            }
+        }
+        width = tiles.length;
     }
 
     public void resizeRight(int i) {
@@ -197,16 +269,33 @@ public class TileMap {
                 }
             }
         }
-        System.out.println("!");
         width = tiles.length;
     }
 
     public void resizeUp(int i) {
-
+        int original[][] = tiles;
+        tiles = new int[width][height + i];
+        for(int ix = 0; ix < width; ix++) {
+            for(int iy = 0; iy < height; iy++) {
+                if(iy + i >= 0) {
+                    tiles[ix][iy + i] = original[ix][iy];
+                }
+            }
+        }
+        height = tiles[0].length;
     }
 
     public void resizeDown(int i) {
-
+        int original[][] = tiles;
+        tiles = new int[width][height + i];
+        for(int ix = 0; ix < width; ix++) {
+            for(int iy = 0; iy < height; iy++) {
+                if(ix < tiles.length && iy < tiles[0].length) {
+                    tiles[ix][iy] = original[ix][iy];
+                }
+            }
+        }
+        height = tiles[0].length;
     }
 
     public int scale(int num) {
