@@ -110,7 +110,7 @@ public class TileMap {
 
         }
         if(addRight.isPressed()) {
-
+            resizeRight(1);
         }
         if(addUp.isPressed()) {
 
@@ -181,6 +181,32 @@ public class TileMap {
         addRight.draw(g);
         addUp.draw(g);
         addDown.draw(g);
+    }
+
+    public void resizeLeft(int i) {
+
+    }
+
+    public void resizeRight(int i) {
+        int original[][] = tiles;
+        tiles = new int[width + i][height];
+        for(int ix = 0; ix < width; ix++) {
+            for(int iy = 0; iy < height; iy++) {
+                if(ix < tiles.length && iy < tiles[0].length) {
+                    tiles[ix][iy] = original[ix][iy];
+                }
+            }
+        }
+        System.out.println("!");
+        width = tiles.length;
+    }
+
+    public void resizeUp(int i) {
+
+    }
+
+    public void resizeDown(int i) {
+
     }
 
     public int scale(int num) {
