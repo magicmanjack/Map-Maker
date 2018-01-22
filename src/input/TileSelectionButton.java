@@ -46,7 +46,7 @@ public class TileSelectionButton extends Button {
                 g.setColor(Color.BLACK);
                 g.fillRect(x, y, h, h); // Draws a black tile if the tile is void.
             }
-            g.drawString(name, x + h + SidePanel.EDGE_SEP, y + (h / 3) * 2); // Draws the file path next to the tile image.
+            g.drawString((name.length() <= 11) ? name : name.substring(0, 10) + "...", x + h + SidePanel.EDGE_SEP, y + (h / 3) * 2); // Draws the file path next to the tile image.
             if(isPressed()) {
                 g.setColor(Color.GRAY);
                 g.fillRect(x, y, w, h);

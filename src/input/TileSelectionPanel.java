@@ -3,7 +3,9 @@ package input;
 import main.SidePanel;
 import main.Tile;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,8 +18,18 @@ public class TileSelectionPanel extends Button {
     private int rowHeight;
     private Tile tileArr[];
     private TileSelectionButton buttons[];
+    private IconButton propBtns[]; // The properties button for the tiles.
     private int scrollOffset;
     private int currentSelection;
+    private static BufferedImage tilePropIcon;
+
+    static {
+        try {
+            tilePropIcon = ImageIO.read(TileSelectionPanel.class.getResourceAsStream("/tile_properties.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public TileSelectionPanel(int x, int y, int w, int h, int rows) {
         setX(x);
@@ -36,8 +48,10 @@ public class TileSelectionPanel extends Button {
         numRows = rows;
         rowHeight = h / numRows;
         buttons = new TileSelectionButton[numRows];
+        propBtns = new IconButton[numRows];
         for(int i = 0; i < buttons.length; i++) {
             buttons[i] = new TileSelectionButton(x, y + (rowHeight * i), w, rowHeight);
+            propBtns[i] = new IconButton(x + w, y + (rowHeight * i), 15, rowHeight, tilePropIcon);
         }
         refresh(); // Refreshes the tile buttons.
     }
@@ -46,8 +60,12 @@ public class TileSelectionPanel extends Button {
     public void update() {
         for(int i = 0; i < buttons.length; i++) {
             buttons[i].update(); // Updates the buttons so they can detect presses.
+            propBtns[i].update();
             if(buttons[i].isPressed()) {
-                currentSelection = i;
+                currentSelection = i + scrollOffset;
+            }
+            if(propBtns[i].isPressed() && i + scrollOffset < tileArr.length) {
+                TilePropertiesWindow.openWindow(i + scrollOffset); // Opens property window for the current tile selected.
             }
         }
     }
@@ -64,6 +82,18 @@ public class TileSelectionPanel extends Button {
                 int i = 1;
                 while (fileReader.hasNext()) {
                     tileArr[i] = new Tile(new File(fileReader.nextLine())); // Creates a new tile for every path specified in the file.
+                    if(fileReader.next().equals("s")) {
+                        tileArr[i].setSolid(true);
+                    }else {
+                        tileArr[i].setSolid(false);
+                    }
+                    if(fileReader.next().equals("o")) {
+                        tileArr[i].setOverlay(true);
+                    }else {
+                        tileArr[i].setOverlay(false);
+                    }
+                    tileArr[i].setUnderlayID(fileReader.nextInt());
+                    fileReader.nextLine();
                     i++;
                 }
 
@@ -132,7 +162,9 @@ public class TileSelectionPanel extends Button {
         StringBuilder sb = new StringBuilder(contents);
         sb.append(numTiles + "\r\n");
         for(int i = 1; i < numTiles; i++) {
-            sb.append(tileArr[i].getPath() + "\r\n");
+            sb.append(tileArr[i].getPath() + "\r\n" + (tileArr[i].isSolid() ? "s" : "-")
+                    + (tileArr[i].isOverlay() ? " o " : " - ")
+                    + tileArr[i].getUnderlayID() + "\r\n");
         }
         contents = sb.toString();
         return contents;
@@ -149,12 +181,21 @@ public class TileSelectionPanel extends Button {
         return currentSelection;
     }
 
+    public String[] getTileNames() {
+        String names[] = new String[tileArr.length];
+        for(int i = 0; i < tileArr.length; i++) {
+            names[i] = tileArr[i].getName();
+        }
+        return names;
+    }
+
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.GRAY);
         g.drawRect(x, y, w, h);
         for(int i = 0; i < buttons.length; i++) {
             buttons[i].draw(g);
+            propBtns[i].draw(g);
         }
     }
 

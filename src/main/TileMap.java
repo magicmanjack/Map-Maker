@@ -20,6 +20,7 @@ public class TileMap {
     private boolean gridEnabled;
     private int offsetX, offsetY, scrollSpeed, focusX, focusY;
     private float scaleFactor;
+    private boolean mouseOnScreen;
 
     private IconButton addLeft, addRight, addUp, addDown; // The buttons for resizing the tilemap.
     private IconButton removeLeft, removeRight, removeUp, removeDown;
@@ -125,6 +126,8 @@ public class TileMap {
 
     public void update() {
 
+        mouseOnScreen = !Main.getInstance().getSidePanel().mouseHovering(); // Is true if the mouse is on screen and not on the side panel.
+
         zoom();
 
         if(InputHandler.upPressed()) {
@@ -159,28 +162,28 @@ public class TileMap {
         removeDown.update();
         updateButtonsPos();
 
-        if(addLeft.isPressed()) {
+        if(addLeft.isPressed() && mouseOnScreen) {
             resizeLeft(1);
         }
-        if(removeLeft.isPressed()) {
+        if(removeLeft.isPressed() && mouseOnScreen) {
             resizeLeft(-1);
         }
-        if(addRight.isPressed()) {
+        if(addRight.isPressed() && mouseOnScreen) {
             resizeRight(1);
         }
-        if(removeRight.isPressed()) {
+        if(removeRight.isPressed() && mouseOnScreen) {
             resizeRight(-1);
         }
-        if(addUp.isPressed()) {
+        if(addUp.isPressed() && mouseOnScreen) {
             resizeUp(1);
         }
-        if(removeUp.isPressed()) {
+        if(removeUp.isPressed() && mouseOnScreen) {
             resizeUp(-1);
         }
-        if(addDown.isPressed()) {
+        if(addDown.isPressed() && mouseOnScreen) {
             resizeDown(1);
         }
-        if(removeDown.isPressed()) {
+        if(removeDown.isPressed() && mouseOnScreen) {
             resizeDown(-1);
         }
         // Buttons done.
@@ -232,7 +235,7 @@ public class TileMap {
         int mY = InputHandler.getMouseY();
         return(mX > scale(0) + offsetX &&
                 mX < (width * scale(TILE_WIDTH)) + offsetX && mY > scale(0) + offsetY &&
-                mY < (height * scale(TILE_HEIGHT)) + offsetY); // Returns true if the mouse is on the tile map.
+                mY < (height * scale(TILE_HEIGHT)) + offsetY && mouseOnScreen); // Returns true if the mouse is on the tile map.
     }
 
     public void draw(Graphics g) {
@@ -240,6 +243,14 @@ public class TileMap {
            for(int iy = 0; iy < height; iy++) {
                TileSelectionPanel t = Main.getInstance().getSidePanel().getTileSelectionPanel();
                if(t.getTileFromID(tiles[ix][iy]) != null) {
+                   if(t.getTileFromID(tiles[ix][iy]).isOverlay()) {
+                       g.drawImage(t.getTileFromID(t.getTileFromID(tiles[ix][iy]).getUnderlayID()).getTexture(),
+                               (ix * scale(TILE_WIDTH)) + offsetX,
+                               (iy * scale(TILE_HEIGHT)) + offsetY,
+                               scale(TILE_WIDTH),
+                               scale(TILE_HEIGHT),
+                               null); // Draws the underlay tile texture before the overlay.
+                   }
                    g.drawImage(t.getTileFromID(tiles[ix][iy]).getTexture(),
                            (ix * scale(TILE_WIDTH)) + offsetX,
                            (iy * scale(TILE_HEIGHT)) + offsetY,

@@ -1,9 +1,6 @@
 package main;
 
-import input.FileSelection;
-import input.IconButton;
-import input.TextButton;
-import input.TileSelectionPanel;
+import input.*;
 import javafx.geometry.Side;
 
 import javax.imageio.ImageIO;
@@ -126,6 +123,12 @@ public class SidePanel {
         addTileBtn.draw(g);
         removeTileBtn.draw(g);
         toggleGridBtn.draw(g);
+    }
+
+    public boolean mouseHovering() {
+        int mX = InputHandler.getMouseX();
+        int mY = InputHandler.getMouseY();
+        return (mX >= X && mX <= X + W && mY >= Y && mY <= Y + H);
     }
 
     public TileSelectionPanel getTileSelectionPanel() {
