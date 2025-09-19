@@ -25,7 +25,7 @@ public class TileSelectionPanel extends Button {
 
     static {
         try {
-            tilePropIcon = ImageIO.read(TileSelectionPanel.class.getResourceAsStream("/tile_properties.png"));
+            tilePropIcon = ImageIO.read(TileSelectionPanel.class.getResourceAsStream("/res/tile_properties.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

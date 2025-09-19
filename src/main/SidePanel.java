@@ -1,7 +1,6 @@
 package main;
 
 import input.*;
-import javafx.geometry.Side;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -37,11 +36,11 @@ public class SidePanel {
 
     static {
         try {
-            mvUpIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/move_up.png"));
-            mvDownIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/move_down.png"));
-            addTileIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/add.png"));
-            removeTileIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/remove.png"));
-            toggleGridIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/toggle_grid.png"));
+            mvUpIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/res/move_up.png"));
+            mvDownIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/res/move_down.png"));
+            addTileIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/res/add.png"));
+            removeTileIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/res/remove.png"));
+            toggleGridIcon = ImageIO.read(SidePanel.class.getResourceAsStream("/res/toggle_grid.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

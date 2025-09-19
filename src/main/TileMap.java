@@ -36,14 +36,14 @@ public class TileMap {
 
     static {
         try {
-            addLeftIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_left.png"));
-            addRightIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_right.png"));
-            addUpIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_up.png"));
-            addDownIcon = ImageIO.read(TileMap.class.getResourceAsStream("/add_down.png"));
-            removeSideLeftIcon = ImageIO.read(TileMap.class.getResourceAsStream("/remove_side_left.png"));
-            removeSideRightIcon = ImageIO.read(TileMap.class.getResourceAsStream("/remove_side_right.png"));
-            removeSideUpIcon =  ImageIO.read(TileMap.class.getResourceAsStream("/remove_side_up.png"));
-            removeSideDownIcon = ImageIO.read(TileMap.class.getResourceAsStream("/remove_side_down.png"));
+            addLeftIcon = ImageIO.read(TileMap.class.getResourceAsStream("/res/add_left.png"));
+            addRightIcon = ImageIO.read(TileMap.class.getResourceAsStream("/res/add_right.png"));
+            addUpIcon = ImageIO.read(TileMap.class.getResourceAsStream("/res/add_up.png"));
+            addDownIcon = ImageIO.read(TileMap.class.getResourceAsStream("/res/add_down.png"));
+            removeSideLeftIcon = ImageIO.read(TileMap.class.getResourceAsStream("/res/remove_side_left.png"));
+            removeSideRightIcon = ImageIO.read(TileMap.class.getResourceAsStream("/res/remove_side_right.png"));
+            removeSideUpIcon =  ImageIO.read(TileMap.class.getResourceAsStream("/res/remove_side_up.png"));
+            removeSideDownIcon = ImageIO.read(TileMap.class.getResourceAsStream("/res/remove_side_down.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
